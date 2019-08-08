@@ -280,8 +280,9 @@
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script>
+	var base_url = "<?= base_url('') ?>";
 	axios({
-		url: "http://localhost/lowcarbo/api/admin/tpa",
+		url: base_url + "api/admin/tpa",
 		method: "GET",
 	}).then(function (res) {
 		console.log(res);
@@ -295,10 +296,10 @@
 		})
 	});
 	var tpa_url = "<?= base_url('api/admin/tpa') ?>";
-	var jenis_sampah_url = "http://localhost/lowcarbo/api/admin/grafik?params=jenis_sampah";
+	var jenis_sampah_url = base_url + "api/admin/grafik?params=jenis_sampah";
 	$(document).ready(function () {
 		$table = $("#dataSampah").DataTable({
-			ajax: "http://localhost/lowcarbo/api/admin/sampah",
+			ajax: base_url + "api/admin/sampah",
 			columns: [{
 					data: "title"
 				},
@@ -354,7 +355,7 @@
 			var r = confirm("Apakah anda yakin menghapus data");
 			if (r == true) {
 				$.ajax({
-					url: "http://localhost/lowcarbo/api/admin/tps",
+					url: base_url + "api/admin/tps",
 					type: "DELETE",
 					data: {
 						"id_tps": data.id_tps
@@ -381,7 +382,7 @@
 			fd.append("password_tps", $("#modalEdit input#password_tps").val());
 			fd.append("gambar_tps", $("#modalEdit input#tps_gambar")[0].files[0]);
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/tpsupdate",
+				url: base_url + "api/admin/tpsupdate",
 				method: "POST",
 				data: fd,
 				cache: false,
@@ -409,7 +410,7 @@
 			fd.append("password_tps", $("#modalTambah input#password_tps").val());
 			fd.append("gambar_tps", $("#modalTambah input#tps_gambar")[0].files[0]);
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/tps",
+				url: base_url + "api/admin/tps",
 				method: "POST",
 				data: fd,
 				cache: false,

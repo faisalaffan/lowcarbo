@@ -55,15 +55,15 @@ class Tpa_model extends CI_Model {
 
 	public function getAllTpa()
 	{
-		// $query = $this->db->select("*")->from('tpa')
-		// ->join("district", "tpa.district_id = district.id")
-		// ->join("city", "district.id_city = city.id")
-		// ->join("province", "city.province_id = province.id")
-		// ->get()
-		// ->result_array();
+		$query = $this->db->select("*")->from('tpa')
+		->join("district", "tpa.district_id = district.id")
+		->join("city", "district.id_city = city.id")
+		->join("province", "city.province_id = province.id")
+		->get()
+		->result_array();
 
-		$query = $this->db->query('SELECT *, SUM(sampah.berat) AS berat_sampah FROM tpa INNER JOIN tps ON tpa.id_tpa = tps.id_tpa INNER JOIN sampah ON tps.id_tps = sampah.id_tps INNER JOIN district ON tpa.district_id = district.id GROUP BY tpa.nama_tpa')->result_array();
-        return $query;
+		// $query = $this->db->query('SELECT *, SUM(sampah.berat) AS berat_sampah FROM tpa INNER JOIN tps ON tpa.id_tpa = tps.id_tpa INNER JOIN sampah ON tps.id_tps = sampah.id_tps INNER JOIN district ON tpa.district_id = district.id GROUP BY tpa.nama_tpa')->result_array();
+        // return $query;
 
 		// $berat = $this->db->select("sampah.berat")->from('sampah')
 		// ->join("tps", "sampah.id_tps = tps.id_tps")

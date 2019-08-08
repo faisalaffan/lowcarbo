@@ -226,8 +226,9 @@
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script>
+	var base_url = "<?= base_url('') ?>";
 	axios({
-		url: "http://localhost/lowcarbo/api/admin/city",
+		url: base_url + "api/admin/city",
 		method: "GET",
 	}).then(function (res) {
 		res.data.data.map((val) => {
@@ -244,10 +245,10 @@
 		$("#modalTambah").modal();
 	});
 	var tpa_url = "<?= base_url('api/admin/tpa') ?>";
-	var jenis_sampah_url = "http://localhost/lowcarbo/api/admin/grafik?params=jenis_sampah";
+	var jenis_sampah_url = base_url + "api/admin/grafik?params=jenis_sampah";
 	$(document).ready(function () {
 		$table = $("#dataDistrict").DataTable({
-			ajax: "http://localhost/lowcarbo/api/admin/district",
+			ajax: base_url + "api/admin/district",
 			columns: [{
 					data: "city_name",
 					// render: function (data, type, row) {
@@ -316,7 +317,7 @@
 			var r = confirm("Apakah anda yakin menghapus data");
 			if (r == true) {
 				$.ajax({
-					url: "http://localhost/lowcarbo/api/admin/district",
+					url: base_url + "api/admin/district",
 					type: "DELETE",
 					data: {
 						"id_district": data.id
@@ -341,7 +342,7 @@
 			fd.append("district_name", district_name);
 			fd.append("postal_code", postal_code);
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/district",
+				url: base_url + "api/admin/district",
 				method: "PUT",
 				data: {
 					"id_district": $("#modalEdit input#id_district").val(),
@@ -366,7 +367,7 @@
 			fd.append("district_name", $("#modalTambah input#district_name").val());
 			fd.append("postal_code", $("#modalTambah input#postal_code").val());
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/district",
+				url: base_url + "api/admin/district",
 				method: "POST",
 				data: fd,
 				cache: false,

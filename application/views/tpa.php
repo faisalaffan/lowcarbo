@@ -427,8 +427,9 @@
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script>
+	var base_url = "<?= base_url('') ?>";
 	axios({
-		url: "http://localhost/lowcarbo/api/admin/district",
+		url: base_url + "api/admin/district",
 		method: "GET",
 	}).then(function (res) {
 		// console.log(res);
@@ -460,23 +461,24 @@
 		fd.append("username_tpa", $("#modalTambah #username_tpa").val());
 		fd.append("password_tpa", $("#modalTambah #password_tpa").val());
 		axios({
-			url: "http://localhost/lowcarbo/api/admin/tpa",
+			url: base_url + "api/admin/tpa",
 			method: "POST",
 			data: fd
 		}).then(function (res) {
+			alert("berhasil tambah data");
 			window.location.reload();
 		}).catch(function (err) {
 			window.location.reload();
 		});
 	})
 	var tpa_url = "<?= base_url('api/admin/tpa') ?>";
-	var jenis_sampah_url = "http://localhost/lowcarbo/api/admin/grafik?params=jenis_sampah";
+	var jenis_sampah_url = base_url + "api/admin/grafik?params=jenis_sampah";
 	$(document).ready(function () {
 		var $table = $("#dataTpa").DataTable({
 			// processing: true,
 			// serverSide: true,
 			responsive: true,
-			ajax: "http://localhost/lowcarbo/api/admin/tpa",
+			ajax: base_url + "api/admin/tpa",
 			columns: [{
 					data: "nama_tpa"
 				},
@@ -582,14 +584,14 @@
 			fd.append("id_tpa", id_tpa);
 			fd.append("kml_file", kml_file);
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/tpakml",
+				url: base_url + "api/admin/tpakml",
 				method: "POST",
 				data: fd,
 				cache: false,
 				contentType: false,
 				processData: false,
 				success: function (res) {
-					console.log(res);
+					alert("berhasil update kml");
 					window.location.reload()
 				}
 			});
@@ -620,13 +622,12 @@
 			var r = confirm("Apakah anda yakin menghapus data");
 			if (r == true) {
 				$.ajax({
-					url: "http://localhost/lowcarbo/api/admin/tpa",
+					url: base_url + "api/admin/tpa",
 					type: "DELETE",
 					data: {
 						"id_tpa": data.id_tpa
 					},
 					success: function (res) {
-						console.log(res);
 						alert('berhasil hapus tpa');
 						window.location.reload();
 					}
@@ -687,7 +688,7 @@
 			fd.append("username_tpa", $("#modalEdit #username_tpa").val());
 			fd.append("password_tpa", $("#modalEdit #password_tpa").val());
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/tpaupdate",
+				url: base_url + "api/admin/tpaupdate",
 				method: "POST",
 				data: fd,
 				cache: false,
@@ -704,7 +705,7 @@
 		});
 
 		$("#dataSampah").DataTable({
-			ajax: "http://localhost/lowcarbo/api/admin/sampah",
+			ajax: base_url + "api/admin/sampah",
 			columns: [{
 					data: "title"
 				},
@@ -820,12 +821,12 @@
 		};
 
 		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 4,
+			zoom: 13,
 			center: myLatLng
 		});
 
 		$.ajax({
-			url: "http://localhost/lowcarbo/api/admin/tpa",
+			url: base_url + "api/admin/tpa",
 			method: "GET",
 			success: function (res) {
 				// console.log(res);

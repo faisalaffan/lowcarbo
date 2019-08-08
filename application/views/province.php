@@ -198,15 +198,16 @@
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script>
+	var base_url = "<?= base_url('') ?>";
 	$("#tambahButton").click(function (e) {
 		e.preventDefault();
 		$("#modalTambah").modal();
 	});
 	var tpa_url = "<?= base_url('api/admin/tpa') ?>";
-	var jenis_sampah_url = "http://localhost/lowcarbo/api/admin/grafik?params=jenis_sampah";
+	var jenis_sampah_url = base_url + "api/admin/grafik?params=jenis_sampah";
 	$(document).ready(function () {
 		$table = $("#dataProvince").DataTable({
-			ajax: "http://localhost/lowcarbo/api/admin/province",
+			ajax: base_url + "api/admin/province",
 			columns: [{
 					data: "province_name"
 				},
@@ -253,7 +254,7 @@
 			var r = confirm("Apakah anda yakin menghapus data");
 			if (r == true) {
 				$.ajax({
-					url: "http://localhost/lowcarbo/api/admin/province",
+					url: base_url + "api/admin/province",
 					type: "DELETE",
 					data: {
 						"id_province": data.id
@@ -269,7 +270,7 @@
 		$("#modalEdit #btnSave").click(function (e) {
 			e.preventDefault();
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/province",
+				url: base_url + "api/admin/province",
 				method: "PUT",
 				data: {
 					"id_province": $("#modalEdit input#province_id").val(),
@@ -294,7 +295,7 @@
 			fd.append("lat", $("#modalTambah input#lat").val());
 			fd.append("lng", $("#modalTambah input#lng").val());
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/province",
+				url: base_url + "api/admin/province",
 				method: "POST",
 				data: fd,
 				cache: false,

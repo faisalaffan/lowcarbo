@@ -21,7 +21,7 @@ class Admin extends REST_Controller{
         $this->load->model('User_model', 'um');
         $this->load->model('Station_model', 'stM');
         $this->load->model('City_model', 'cm');
-        
+
 		header('Access-Control-Allow-Origin: *');
 		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
 		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, PATCH, OPTIONS");
@@ -71,7 +71,7 @@ class Admin extends REST_Controller{
             $now = date('dmYHis');
             $uploaddir = base_url('assets/tpa/');
             $file_name = $now . ".jpg";
-            $uploadfile = $_SERVER['DOCUMENT_ROOT'] . "/lowcarbo/assets/tpa/".$file_name;
+            $uploadfile = UPLOAD . "tpa/".$file_name;
 
             // generator id
             $tgl = date('YmdHis');
@@ -142,7 +142,7 @@ class Admin extends REST_Controller{
                 $now = date('dmYHis');
                 $uploaddir = base_url('assets/tpa/');
                 $file_name = $now.".jpg";
-                $uploadfile = $_SERVER['DOCUMENT_ROOT'] . "/lowcarbo/assets/tpa/" . $file_name;
+                $uploadfile = UPLOAD . "tpa/" . $file_name;
 
                 $data = [   
                     'nama_tpa' => $this->post('nama_tpa'),
@@ -314,7 +314,7 @@ class Admin extends REST_Controller{
             $now = date('dmYHis');
             $uploaddir = base_url('assets/tps/');
             $file_name = $now . ".jpg";
-            $uploadfile = $_SERVER['DOCUMENT_ROOT'] . "/lowcarbo/assets/tps/".$file_name;
+            $uploadfile = UPLOAD . "tps/".$file_name;
 
              // generator id
              $tgl = date('YmdHis');
@@ -383,7 +383,7 @@ class Admin extends REST_Controller{
                 $now = date('dmYHis');
                 $uploaddir = base_url('assets/tps/');
                 $file_name = $now . ".jpg";
-                $uploadfile = $_SERVER['DOCUMENT_ROOT'] . "/lowcarbo/assets/tps/".$file_name;
+                $uploadfile = UPLOAD . "tps/".$file_name;
 
                 $data = [
                     'id_tpa' => $this->post('id_tpa'),

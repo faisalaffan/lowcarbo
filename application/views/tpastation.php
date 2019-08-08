@@ -270,12 +270,7 @@
     });
     $("#btnBack").click(function (e) {
         e.preventDefault();
-        window.location.href = "<?= base_url('/tpa') ?>";
-    });
-    $("#logoutBtn").click(function (e) {
-        sessionStorage.clear();
-        window.location.reload();
-        // window.location.href = "<?= base_url('auth') ?>";
+        window.location.href = "<?= base_url('tpa') ?>";
     });
 </script>
 

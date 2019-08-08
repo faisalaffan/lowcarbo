@@ -252,8 +252,9 @@
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script>
+	var base_url = "<?= base_url('') ?>";
 	axios({
-		url: "http://localhost/lowcarbo/api/admin/tpa",
+		url: base_url + "api/admin/tpa",
 		method: "GET",
 	}).then(function (res) {
 		// console.log(res);
@@ -271,10 +272,10 @@
 		$("#modalTambah").modal();
 	});
 	var tpa_url = "<?= base_url('api/admin/tpa') ?>";
-	var jenis_sampah_url = "http://localhost/lowcarbo/api/admin/grafik?params=jenis_sampah";
+	var jenis_sampah_url = base_url + "api/admin/grafik?params=jenis_sampah";
 	$(document).ready(function () {
 		$("#dataSampah").DataTable({
-			ajax: "http://localhost/lowcarbo/api/admin/sampah",
+			ajax: base_url + "api/admin/sampah",
 			columns: [{
 					data: "title"
 				},
@@ -293,7 +294,7 @@
 			]
 		});
 		var $table = $("#dataStation").DataTable({
-			"ajax": "http://localhost/lowcarbo/api/admin/station",
+			"ajax": base_url + "api/admin/station",
 			"columns": [{
 					data: "nama_station"
 				},
@@ -355,7 +356,7 @@
 			var r = confirm("Apakah anda yakin menghapus data");
 			if (r == true) {
 				$.ajax({
-					url: "http://localhost/lowcarbo/api/admin/station",
+					url: base_url + "api/admin/station",
 					type: "DELETE",
 					data: {
 						"id_station": data.id_station
@@ -378,7 +379,7 @@
 			fd.append("lat_station", $("#modalEdit input#lat_station").val());
 			fd.append("lng_station", $("#modalEdit input#lng_station").val());
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/stationupdate",
+				url: base_url + "api/admin/stationupdate",
 				method: "POST",
 				data: fd,
 				cache: false,
@@ -402,7 +403,7 @@
 			fd.append("lat_station", $("#modalTambah input#lat_station").val());
 			fd.append("lng_station", $("#modalTambah input#lng_station").val());
 			$.ajax({
-				url: "http://localhost/lowcarbo/api/admin/station",
+				url: base_url + "api/admin/station",
 				method: "POST",
 				data: fd,
 				cache: false,
